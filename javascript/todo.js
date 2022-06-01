@@ -1,6 +1,9 @@
 // variable
 var editTaskId = 0;
 var displayTask = {};
+var todos = [];
+
+let renderTodos;
 
 
 // hide the form 
@@ -88,24 +91,16 @@ $('#add').click((element) =>{
         </div>`)
             .appendTo(".list-container")
     }
-    // edit(`#pen${ id }`)
-    // progress(`#Completed${ id }`)
-    // deleteTask(`#trash${ id }`)
-    // $('#title').val('')
-    // $('#Description').val('')
-    // $('#Point').val('1')
-    // $('#due-time').val('')
-    // localStorage.clear()
-    // fillLocalStorage(todos)
+    edit(`#pen${ id }`)
+    progress(`#Completed${ id }`)
+    deleteTask(`#trash${ id }`)
+    $('#title').val('')
+    $('#Description').val('')
+    $('#Point').val('1')
+    $('#due-time').val('')
+    localStorage.clear()
+    fillLocalStorage(todos)
 })
-
-
-
-
-
-
-
-
 
 
 
@@ -160,7 +155,7 @@ const progress = (selector) =>
             }
             for (let i = 0; i < todos.length; i++) {
                 if (todos[i].taskId === displayTask.taskId) {
-                    todos[i] = targetTask
+                    todos[i] = displayTask
                 }
             }
             updateProgress(displayTask)
@@ -183,5 +178,12 @@ const deleteTask = (selector) =>
         renderTodos(todos);
         localStorage.clear();
         fillLocalStorage(todos);
-        targetTask = {};
+        displayTask = {};
     })
+
+const curTime = (x = null) => {
+    if (x) {
+        return `${ new Date(x).getDate() }:${ new Date(x).getMonth() + 1 }:${ new Date(x).getFullYear() } <br> ${ new Date(x).getHours() }:${ new Date(x).getMinutes() }:${ new Date(x).getSeconds() }`
+    }
+    return `${ new Date().getDate() }:${ new Date().getMonth() + 1 }:${ new Date().getFullYear() } <br> ${ new Date().getHours() }:${ new Date().getMinutes() }:${ new Date().getSeconds() }`
+}
