@@ -114,6 +114,21 @@ const sortByPoint = (arr, order = 'asc') => {
     }
 }
 
+$('#points').click((element) => {
+    $('#points').toggleClass('fa-angle-up')
+    let todosB
+    if (results) {
+        todosB = [...results]
+    } else {
+        todosB = [...todos]
+    }
+    if (element.target.classList.contains('fa-angle-up'))
+        sortByPoint(todosB)
+    else
+        sortByPoint(todosB, 's')
+    renderTodos(todosB)
+})
+
 
 
 
