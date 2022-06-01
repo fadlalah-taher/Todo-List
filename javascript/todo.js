@@ -188,6 +188,24 @@ const curTime = (x = null) => {
     return `${ new Date().getDate() }:${ new Date().getMonth() + 1 }:${ new Date().getFullYear() } <br> ${ new Date().getHours() }:${ new Date().getMinutes() }:${ new Date().getSeconds() }`
 }
 
+// edit function
+const edit = (selector) =>
+    $(selector).click((element) => {
+        for (let todo of todos) {
+            let penId = `pen${ todo.taskId }`
+            if (penId === element.target.id) {
+                targetTask = todo
+                break
+            }
+        }
+        editTaskId = targetTask.taskId
+        $('.form-bg').toggle("fast")
+        $('#title').val(targetTask.title)
+        $('#Description').val(targetTask.description)
+        $('#Point').val(targetTask.point)
+        $('#due-time').val(targetTask.dueTime.value)
+    })
+
 // render
 renderTodos = (arr) => {
     $('.list-container .element').remove()
