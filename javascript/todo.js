@@ -253,27 +253,27 @@ renderTodos = (arr) => {
     $('.list-container .element').remove()
     for (todo of arr) {
         $(`<div class="element ${ todo.completed ? 'done' : '' }" id="div${ todo.taskId }">
-        <i class="fa-solid fa-pen-to-square" id="pen${ todo.taskId }"></i>
-    <div>
-    <input type="checkbox" name="Completed" id="Completed${ todo.taskId }" ${ todo.completed ? 'checked' : '' }>
-    </div>
-    <div id="t${ todo.taskId }">
         <p>${ todo.taskId }</p>
+    <div>
+    <p>${ todo.title }</p>
     </div>
     <div id="t${ todo.taskId }">
-        <p>${ todo.title }</p>
-    </div>
-    <div id="t${ todo.taskId }">
-        <p>${ todo.description }</p>
+    <p>${ todo.description }</p>
     </div>
     <div id="t${ todo.taskId }">
         ${ todo.point }
     </div>
     <div id="t${ todo.taskId }">
-        <p>${ todo.createdTime.time }</p>
+    ${ todo.dueTime.time }
     </div>
     <div id="t${ todo.taskId }">
-        ${ todo.dueTime.time }
+    <p>${ todo.createdTime.time }</p>
+    </div>
+    <div id="t${ todo.taskId }">
+        <input type="checkbox" name="Completed" id="Completed${ todo.taskId }" ${ todo.completed ? 'checked' : '' }>
+    </div>
+    <div id="t${ todo.taskId }">
+    <i class="fa-solid fa-pen-to-square" id="pen${ todo.taskId }"></i>
     </div>
     <i class="fa-solid fa-trash-can" id="trash${ todo.taskId }"></i>
     </div>`)
