@@ -5,6 +5,7 @@ var todos = [];
 var results;
 let renderTodos;
 
+//todos = getLocalStorageItems();
 
 // hide the form 
 $('.form-appear').toggle();
@@ -250,16 +251,16 @@ const edit = (selector) =>
         for (let todo of todos) {
             let penId = `pen${ todo.taskId }`
             if (penId === element.target.id) {
-                targetTask = todo
+                displayTask = todo
                 break
             }
         }
-        editTaskId = targetTask.taskId
-        $('.form-appear').toggle("fast")
-        $('#title').val(targetTask.title)
-        $('#Description').val(targetTask.description)
-        $('#Point').val(targetTask.point)
-        $('#due-time').val(targetTask.dueTime.value)
+        editTaskId = displayTask.taskId
+        $('.form-appear').toggle();
+        $('#title').val(displayTask.title);
+        $('#Description').val(displayTask.description);
+        $('#Point').val(displayTask.point);
+        $('#due-time').val(displayTask.dueTime.value);
     })
 
 // render
@@ -269,27 +270,27 @@ renderTodos = (arr) => {
         $(`<div class="element ${ todo.completed ? 'done' : '' }" id="div${ todo.taskId }">
         <p>${ todo.taskId }</p>
     <div>
-    <p>${ todo.title }</p>
+        <p>${ todo.title }</p>
     </div>
     <div id="t${ todo.taskId }">
-    <p>${ todo.description }</p>
+        <p>${ todo.description }</p>
     </div>
     <div id="t${ todo.taskId }">
         ${ todo.point }
     </div>
     <div id="t${ todo.taskId }">
-    ${ todo.dueTime.time }
+        ${ todo.dueTime.time }
     </div>
     <div id="t${ todo.taskId }">
-    <p>${ todo.createdTime.time }</p>
+        <p>${ todo.createdTime.time }</p>
     </div>
     <div id="t${ todo.taskId }">
         <input type="checkbox" name="Completed" id="Completed${ todo.taskId }" ${ todo.completed ? 'checked' : '' }>
     </div>
     <div id="t${ todo.taskId }">
-    <i class="fa-solid fa-pen-to-square" id="pen${ todo.taskId }"></i>
+        <i class="fa-solid fa-pen-to-square" id="pen${ todo.taskId }"></i>
     </div>
-    <i class="fa-solid fa-trash-can" id="trash${ todo.taskId }"></i>
+        <i class="fa-solid fa-trash-can" id="trash${ todo.taskId }"></i>
     </div>`)
             .appendTo(".list-container")
     }

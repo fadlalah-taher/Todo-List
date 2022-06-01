@@ -145,6 +145,10 @@ form .form-content input:focus,select:focus,textarea:focus{
     font-size: 1.3em;
     transition: all 100ms linear;
 }
+.done{
+    background-color: gray;
+    color: white;
+}
 
 /* Media query */
 
