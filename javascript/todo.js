@@ -89,18 +89,31 @@ $('#add').click((element) =>{
         </div>
         <i class="fa-solid fa-trash-can" id="trash${ id }"></i>
         </div>`)
-            .appendTo(".list-container")
+            .appendTo(".list-container");
     }
-    edit(`#pen${ id }`)
-    progress(`#Completed${ id }`)
-    deleteTask(`#trash${ id }`)
-    $('#title').val('')
-    $('#Description').val('')
-    $('#Point').val('1')
-    $('#due-time').val('')
-    localStorage.clear()
-    fillLocalStorage(todos)
-})
+    edit(`#pen${ id }`);
+    progress(`#Completed${ id }`);
+    deleteTask(`#trash${ id }`);
+    $('#title').val('');
+    $('#Description').val('');
+    $('#Point').val('1');
+    $('#due-time').val('');
+    localStorage.clear();
+    fillLocalStorage(todos);
+});
+
+const sortByPoint = (arr, order = 'asc') => {
+    if (order === 'asc')
+        arr.sort((a, b) => {
+            return a.point - b.point;
+        })
+    else {
+        arr.sort((a, b) => {
+            return b.point - a.point;
+        })
+    }
+}
+
 
 
 
