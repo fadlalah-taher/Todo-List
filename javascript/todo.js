@@ -241,3 +241,13 @@ renderTodos = (arr) => {
     deleteTask('.fa-trash-can')
     progress('input[type=checkbox]')
 }
+//
+const fillLocalStorage = (arr) => {
+    let index = 1;
+    for (todo of arr) {
+        localStorage.setItem(`todo:${ index }`,
+            JSON.stringify(todo)
+        )
+        index++;
+    }
+}
