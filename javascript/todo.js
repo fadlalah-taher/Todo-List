@@ -187,3 +187,39 @@ const curTime = (x = null) => {
     }
     return `${ new Date().getDate() }:${ new Date().getMonth() + 1 }:${ new Date().getFullYear() } <br> ${ new Date().getHours() }:${ new Date().getMinutes() }:${ new Date().getSeconds() }`
 }
+
+// render
+renderTodos = (arr) => {
+    $('.list-container .element').remove()
+    for (todo of arr) {
+        $(`<div class="element ${ todo.completed ? 'done' : '' }" id="div${ todo.taskId }">
+        <i class="fa-solid fa-pen-to-square" id="pen${ todo.taskId }"></i>
+    <div>
+    <input type="checkbox" name="Completed" id="Completed${ todo.taskId }" ${ todo.completed ? 'checked' : '' }>
+    </div>
+    <div id="t${ todo.taskId }">
+        <p>${ todo.taskId }</p>
+    </div>
+    <div id="t${ todo.taskId }">
+        <p>${ todo.title }</p>
+    </div>
+    <div id="t${ todo.taskId }">
+        <p>${ todo.description }</p>
+    </div>
+    <div id="t${ todo.taskId }">
+        ${ todo.point }
+    </div>
+    <div id="t${ todo.taskId }">
+        <p>${ todo.createdTime.time }</p>
+    </div>
+    <div id="t${ todo.taskId }">
+        ${ todo.dueTime.time }
+    </div>
+    <i class="fa-solid fa-trash-can" id="trash${ todo.taskId }"></i>
+    </div>`)
+            .appendTo(".list-container")
+    }
+    edit('.fa-pen-to-square')
+    deleteTask('.fa-trash-can')
+    progress('input[type=checkbox]')
+}
