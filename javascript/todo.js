@@ -114,6 +114,7 @@ const sortByPoint = (arr, order = 'asc') => {
     }
 }
 
+// onclick sorting the list and change the icon
 $('#points').click((element) => {
     $('#points').toggleClass('fa-angle-up')
     let todosB
@@ -129,7 +130,7 @@ $('#points').click((element) => {
     renderTodos(todosB);
 })
 
-
+// onclick clear list
 $('#clear').click(() => {
     localStorage.clear();
     todos = [];
@@ -137,10 +138,7 @@ $('#clear').click(() => {
 })
 
 
-
-
-
-////////////////////// functions
+// functions
 
 const invalidInput = () => {
     if ($('#title').val() === '' || $('#Description').val() === '' || $('#due-time').val() === '') {
