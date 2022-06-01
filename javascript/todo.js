@@ -25,6 +25,78 @@ $('#add').click((element) =>{
         return;
     }
     var id;
+    if (editTaskId) {
+        displayTask.title = $('#title').val()
+        displayTask.description = $('#Description').val()
+        displayTask.point = $('#Point').val()
+        displayTask.dueTime.value = $('#due-time').val()
+        displayTask.dueTime.time = `${ curTime($('#due-time').val()) }`
+        for (let i = 0; i < todos.length; i++) {
+            if (todos[i].taskId === displayTask.taskId) {
+                todos[i] = displayTask
+            }
+        }
+        $('.form-appear').toggle()
+        editTaskId = 0
+        updateEdits(displayTask)
+        displayTask = {}
+
+    }
+    else{
+        id = todoId()
+        $('.form-appear').toggle("fast")
+        todos.push({
+            completed: false,
+            taskId: id,
+            title: `${ $('#title').val() }`,
+            description: `${ $('#Description').val() }`,
+            point: `${ $('#Point').val() }`,
+            createdTime: {
+                time: `${ curTime() }`,
+                value: new Date()
+            },
+            dueTime: {
+                time: `${ curTime($('#due-time').val()) }`,
+                value: $('#due-time').val()
+            }
+        })
+
+        $(`<div class="element" id="div${ id }">
+        <i class="fa-solid fa-pen-to-square" id="pen${ id }"></i>
+        <div>
+        <input type="checkbox" name="Completed" id="Completed${ id }">
+        </div>
+        <div id="t${ id }">
+            <p>${ id }</p>
+        </div>
+        <div id="t${ id }">
+            <p>${ $('#title').val() }</p>
+        </div>
+        <div id="t${ id }">
+            <p>${ $('#Description').val() }</p>
+        </div>
+        <div id="t${ id }">
+            ${ $('#Point').val() }
+        </div>
+        <div id="t${ id }">
+            <p>${ curTime() }</p>
+        </div>
+        <div id="t${ id }">
+            ${ curTime($('#due-time').val()) }
+        </div>
+        <i class="fa-solid fa-trash-can" id="trash${ id }"></i>
+        </div>`)
+            .appendTo(".list-container")
+    }
+    // edit(`#pen${ id }`)
+    // progress(`#Completed${ id }`)
+    // deleteTask(`#trash${ id }`)
+    // $('#title').val('')
+    // $('#Description').val('')
+    // $('#Point').val('1')
+    // $('#due-time').val('')
+    // localStorage.clear()
+    // fillLocalStorage(todos)
 })
 
 
@@ -68,3 +140,20 @@ const todoId = () => {
     } while (ids.includes(rand))
     return rand;
 }
+
+// delete task 
+const deleteTask = (selector) =>
+    $(selector).click((element) => {
+        for (let i = 0; i < todos.length; i++) {
+            let TrashId = `trash${ todos[i].taskId }`
+            if (TrashId === element.target.id) {
+                todos = todos.filter(task => {
+                    return task !== todos[i];
+                });
+            }
+        }
+        renderTodos(todos);
+        localStorage.clear();
+        fillLocalStorage(todos);
+        targetTask = {};
+    })
