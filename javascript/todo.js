@@ -141,6 +141,34 @@ const todoId = () => {
     return rand;
 }
 
+// progress function
+const progress = (selector) =>
+    $(selector).change(
+        function (element) {
+            for (let todo of todos) {
+                let checkboxId = `Completed${ todo.taskId }`
+                if (checkboxId === element.target.id) {
+                    displayTask = todo
+                    break
+                }
+            }
+            if (element.target.checked) {
+                displayTask.completed = true
+            }
+            else {
+                displayTask.completed = false
+            }
+            for (let i = 0; i < todos.length; i++) {
+                if (todos[i].taskId === displayTask.taskId) {
+                    todos[i] = targetTask
+                }
+            }
+            updateProgress(displayTask)
+            localStorage.clear()
+            fillLocalStorage(todos)
+            displayTask = {}
+        })
+
 // delete task 
 const deleteTask = (selector) =>
     $(selector).click((element) => {
