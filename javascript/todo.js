@@ -206,6 +206,18 @@ const progress = (selector) =>
             displayTask = {}
         })
 
+const updateEdits = (task) => {
+    let id = `#t${ task.taskId }`
+    $(`${ id }:nth-of-type(3)`).html(`<p>${ task.title }</p>`)
+    $(`${ id }:nth-of-type(4)`).html(`<p>${ task.description }</p>`)
+    $(`${ id }:nth-of-type(5)`).html(`<p>${ task.point }</p>`)
+    $(`${ id }:nth-of-type(7)`).html(`<p>${ task.dueTime.time }</p>`)
+}
+const updateProgress = (task) => {
+    let divId = `#div${ task.taskId }`
+    $(divId).toggleClass('done')
+}
+
 // delete task 
 const deleteTask = (selector) =>
     $(selector).click((element) => {
