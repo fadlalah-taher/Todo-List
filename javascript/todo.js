@@ -2,7 +2,7 @@
 var editTaskId = 0;
 var displayTask = {};
 var todos = [];
-
+var results;
 let renderTodos;
 
 
@@ -29,10 +29,10 @@ $('#add').click((element) =>{
     }
     var id;
     if (editTaskId) {
-        displayTask.title = $('#title').val()
-        displayTask.description = $('#Description').val()
-        displayTask.point = $('#Point').val()
-        displayTask.dueTime.value = $('#due-time').val()
+        displayTask.title = $('#title').val();
+        displayTask.description = $('#Description').val();
+        displayTask.point = $('#Point').val();
+        displayTask.dueTime.value = $('#due-time').val();
         displayTask.dueTime.time = `${ curTime($('#due-time').val()) }`
         for (let i = 0; i < todos.length; i++) {
             if (todos[i].taskId === displayTask.taskId) {
@@ -47,7 +47,7 @@ $('#add').click((element) =>{
     }
     else{
         id = todoId()
-        $('.form-appear').toggle("fast")
+        $('.form-appear').toggle();
         todos.push({
             completed: false,
             taskId: id,
@@ -148,6 +148,7 @@ $('#clear').click(() => {
 })
 
 
+
 // functions
 
 const invalidInput = () => {
@@ -213,9 +214,10 @@ const updateEdits = (task) => {
     $(`${ id }:nth-of-type(5)`).html(`<p>${ task.point }</p>`)
     $(`${ id }:nth-of-type(7)`).html(`<p>${ task.dueTime.time }</p>`)
 }
+// display class that mark the todo that check
 const updateProgress = (task) => {
     let divId = `#div${ task.taskId }`
-    $(divId).toggleClass('done')
+    $(divId).toggleClass('done');
 }
 
 // delete task 
@@ -253,7 +255,7 @@ const edit = (selector) =>
             }
         }
         editTaskId = targetTask.taskId
-        $('.form-bg').toggle("fast")
+        $('.form-appear').toggle("fast")
         $('#title').val(targetTask.title)
         $('#Description').val(targetTask.description)
         $('#Point').val(targetTask.point)
@@ -305,3 +307,8 @@ const fillLocalStorage = (arr) => {
         index++;
     }
 }
+
+edit('.fa-pen-to-square')
+progress('input[type=checkbox]')
+deleteTask('.fa-trash-can')
+renderTodos(todos)
