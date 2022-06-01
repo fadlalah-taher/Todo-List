@@ -65,14 +65,8 @@ $('#add').click((element) =>{
         })
 
         $(`<div class="element" id="div${ id }">
-        <i class="fa-solid fa-pen-to-square" id="pen${ id }"></i>
-        <div>
-        <input type="checkbox" name="Completed" id="Completed${ id }">
-        </div>
-        <div id="t${ id }">
             <p>${ id }</p>
-        </div>
-        <div id="t${ id }">
+        <div>
             <p>${ $('#title').val() }</p>
         </div>
         <div id="t${ id }">
@@ -87,7 +81,13 @@ $('#add').click((element) =>{
         <div id="t${ id }">
             ${ curTime($('#due-time').val()) }
         </div>
-        <i class="fa-solid fa-trash-can" id="trash${ id }"></i>
+        <div id="t${ id }">
+            <input type="checkbox" name="Completed" id="Completed${ id }">
+        </div>
+        <div id="t${ id }">
+            <i class="fa-solid fa-pen-to-square" id="pen${ id }"></i>
+        </div>
+            <i class="fa-solid fa-trash-can" id="trash${ id }"></i>
         </div>`)
             .appendTo(".list-container");
     }
@@ -113,7 +113,6 @@ const sortByPoint = (arr, order = 'asc') => {
         })
     }
 }
-
 // onclick sorting the list and change the icon
 $('#points').click((element) => {
     $('#points').toggleClass('fa-angle-up')
