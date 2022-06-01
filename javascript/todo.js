@@ -129,6 +129,17 @@ $('#points').click((element) => {
     renderTodos(todosB);
 })
 
+// search 
+$('#search').on('keyup', (element) => {
+    results = [];
+    for (let todo of todos) {
+        if (todo.title.toLowerCase().includes(element.target.value.toLowerCase()) || todo.description.toLowerCase().includes(element.target.value.toLowerCase())) {
+            results.includes(todo) ? '' : results.push(todo);
+        }
+    }
+    renderTodos(results);
+})
+
 // onclick clear list
 $('#clear').click(() => {
     localStorage.clear();
