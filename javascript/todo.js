@@ -118,17 +118,23 @@ $('#points').click((element) => {
     $('#points').toggleClass('fa-angle-up')
     let todosB
     if (results) {
-        todosB = [...results]
+        todosB = [...results];
     } else {
-        todosB = [...todos]
+        todosB = [...todos];
     }
     if (element.target.classList.contains('fa-angle-up'))
-        sortByPoint(todosB)
+        sortByPoint(todosB);
     else
-        sortByPoint(todosB, 's')
-    renderTodos(todosB)
+        sortByPoint(todosB, 's');
+    renderTodos(todosB);
 })
 
+
+$('#clear').click(() => {
+    localStorage.clear();
+    todos = [];
+    renderTodos(todos);
+})
 
 
 
