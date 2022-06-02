@@ -34,7 +34,7 @@ $('#add').click((element) =>{
         displayTask.description = $('#Description').val();
         displayTask.point = $('#Point').val();
         displayTask.dueTime.value = $('#due-time').val();
-        displayTask.dueTime.time = `${ curTime($('#due-time').val()) }`
+        displayTask.dueTime.time = `${ currentTime($('#due-time').val()) }`
         for (let i = 0; i < todotask.length; i++) {
             if (todotask[i].taskId === displayTask.taskId) {
                 todotask[i] = displayTask
@@ -56,11 +56,11 @@ $('#add').click((element) =>{
             description: `${ $('#Description').val() }`,
             point: `${ $('#Point').val() }`,
             createdTime: {
-                time: `${ curTime() }`,
+                time: `${ currentTime() }`,
                 value: new Date()
             },
             dueTime: {
-                time: `${ curTime($('#due-time').val()) }`,
+                time: `${ currentTime($('#due-time').val()) }`,
                 value: $('#due-time').val()
             }
         })
@@ -77,10 +77,10 @@ $('#add').click((element) =>{
             ${ $('#Point').val() }
         </div>
         <div id="t${ id }">
-            <p>${ curTime() }</p>
+            <p>${ currentTime() }</p>
         </div>
         <div id="t${ id }">
-            ${ curTime($('#due-time').val()) }
+            ${ currentTime($('#due-time').val()) }
         </div>
         <div id="t${ id }">
             <input type="checkbox" name="Completed" id="Completed${ id }">
@@ -103,7 +103,7 @@ $('#add').click((element) =>{
     fillLocalStorage(todotask);
 });
 
-// sorting in asc order accotding to point
+// sorting in asc order according to point
 const sortByPoint = (arr, order = 'asc') => {
     if (order === 'asc')
         arr.sort((a, b) => {
@@ -241,11 +241,13 @@ const deleteTask = (selector) =>
         displayTask = {};
     })
 
-const curTime = (x = null) => {
+const currentTime = (x = null) => {
+    var date = new Date(x);
+    var dt = new Date();
     if (x) {
-        return `${ new Date(x).getDate() }:${ new Date(x).getMonth() + 1 }:${ new Date(x).getFullYear() } <br> ${ new Date(x).getHours() }:${ new Date(x).getMinutes() }:${ new Date(x).getSeconds() }`
+        return `${ date.getDate() }/${ date.getMonth() + 1 }/${ date.getFullYear() } <br> ${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }`
     }
-    return `${ new Date().getDate() }:${ new Date().getMonth() + 1 }:${ new Date().getFullYear() } <br> ${ new Date().getHours() }:${ new Date().getMinutes() }:${ new Date().getSeconds() }`
+    return `${ dt.getDate() }/${ dt.getMonth() + 1 }/${ dt.getFullYear() } <br> ${ dt.getHours() }:${ dt.getMinutes() }:${ dt.getSeconds() }`
 }
 
 // edit function
