@@ -8,6 +8,7 @@ let displayTodos;
 
 // hide the form 
 $('.form-appear').toggle();
+
 // when click on button Add a task form appear
 $('#addtask-item').click(() => $('.form-appear').toggle());
 
@@ -172,10 +173,10 @@ const todoId = () => {
     let ids = [];
     for (let todo of todos)
         ids.push(todo.taskId)
-        ids.length === 599 && alert('Full List');
-        ids.length === 599 && retrun;
+        ids.length === 500 && alert('Full List');
+        ids.length === 500 && retrun;
     do {
-        rand = Math.floor(Math.random() * 599 + 100);
+        rand = Math.floor(Math.random() * 500 + 100);
     } while (ids.includes(rand))
     return rand;
 }
