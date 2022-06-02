@@ -220,7 +220,7 @@ const updateEdits = (element) => {
 // display class that mark the todo that check
 const updateProgress = (task) => {
     let divId = `#div${ task.taskId }`
-    $(divId).toggleClass('done');
+    $(divId).toggleClass('markCheck');
 }
 
 // delete task 
