@@ -209,12 +209,12 @@ const progress = (selector) =>
         })
 
 // update and display the tasks in specific order
-const updateEdits = (task) => {
-    let id = `#t${ task.taskId }`
-    $(`${ id }:nth-of-type(1)`).html(`<p>${ task.title }</p>`)
-    $(`${ id }:nth-of-type(2)`).html(`<p>${ task.description }</p>`)
-    $(`${ id }:nth-of-type(3)`).html(`<p>${ task.point }</p>`)
-    $(`${ id }:nth-of-type(5)`).html(`<p>${ task.dueTime.time }</p>`)
+const updateEdits = (element) => {
+    let id = `#t${ element.taskId }`
+    $(`${ id }:nth-of-type(1)`).html(`<p>${ element.title }</p>`)
+    $(`${ id }:nth-of-type(2)`).html(`<p>${ element.description }</p>`)
+    $(`${ id }:nth-of-type(3)`).html(`<p>${ element.point }</p>`)
+    $(`${ id }:nth-of-type(5)`).html(`<p>${ element.dueTime.time }</p>`)
 }
 
 // display class that mark the todo that check
