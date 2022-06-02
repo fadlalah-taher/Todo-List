@@ -4,8 +4,9 @@ var displayTask = {};
 var todos = [];
 var results;
 let displayTodos;
+//todos = localStorage.getItem("");
 
-//todos = getLocalStorageItems();
+
 
 // hide the form 
 $('.form-appear').toggle();
@@ -300,6 +301,15 @@ displayTodos = (arr) => {
     progress('input[type=checkbox]')
 }
 //
+const getLocalStorageItems = () => {
+    let localItems = [];
+    let i = 1;
+    while (JSON.parse(localStorage.getItem(`todo:${ i }`))) {
+        localItems.push(JSON.parse(localStorage.getItem(`todo:${ i }`)))
+        i++;
+    }
+    return localItems;
+}
 const fillLocalStorage = (arr) => {
     let index = 1;
     for (todo of arr) {
@@ -309,8 +319,8 @@ const fillLocalStorage = (arr) => {
         index++;
     }
 }
-
-edit('.fa-pen-to-square')
-progress('input[type=checkbox]')
-deleteTask('.fa-trash-can')
-displayTodos(todos)
+todos = getLocalStorageItems(); 
+edit('.fa-pen-to-square');
+progress('input[type=checkbox]');
+deleteTask('.fa-trash-can');
+displayTodos(todos);
