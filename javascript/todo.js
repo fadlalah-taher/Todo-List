@@ -40,10 +40,10 @@ $('#add').click((element) =>{
                 todos[i] = displayTask
             }
         }
-        $('.form-appear').toggle()
-        editTaskId = 0
-        updateEdits(displayTask)
-        displayTask = {}
+        $('.form-appear').toggle();
+        editTaskId = 0;
+        updateEdits(displayTask);
+        displayTask = {};
 
     }
     else{
@@ -114,6 +114,7 @@ const sortByPoint = (arr, order = 'asc') => {
         })
     }
 }
+
 // onclick sorting the list and change the icon
 $('#points').click((element) => {
     $('#points').toggleClass('fa-angle-up')
@@ -210,10 +211,10 @@ const progress = (selector) =>
 
 const updateEdits = (task) => {
     let id = `#t${ task.taskId }`
-    $(`${ id }:nth-of-type(3)`).html(`<p>${ task.title }</p>`)
-    $(`${ id }:nth-of-type(4)`).html(`<p>${ task.description }</p>`)
-    $(`${ id }:nth-of-type(5)`).html(`<p>${ task.point }</p>`)
-    $(`${ id }:nth-of-type(7)`).html(`<p>${ task.dueTime.time }</p>`)
+    $(`${ id }:nth-of-type(1)`).html(`<p>${ task.title }</p>`)
+    $(`${ id }:nth-of-type(2)`).html(`<p>${ task.description }</p>`)
+    $(`${ id }:nth-of-type(3)`).html(`<p>${ task.point }</p>`)
+    $(`${ id }:nth-of-type(5)`).html(`<p>${ task.dueTime.time }</p>`)
 }
 // display class that mark the todo that check
 const updateProgress = (task) => {
@@ -255,7 +256,7 @@ const edit = (selector) =>
                 break
             }
         }
-        editTaskId = displayTask.taskId
+        editTaskId = displayTask.taskId;
         $('.form-appear').toggle();
         $('#title').val(displayTask.title);
         $('#Description').val(displayTask.description);
