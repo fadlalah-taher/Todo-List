@@ -103,6 +103,7 @@ $('#add').click((element) =>{
     fillLocalStorage(todotask);
 });
 
+// sorting in asc order accotding to point
 const sortByPoint = (arr, order = 'asc') => {
     if (order === 'asc')
         arr.sort((a, b) => {
@@ -150,9 +151,7 @@ $('#clear').click(() => {
 })
 
 
-
 // functions
-
 const invalidInput = () => {
     if ($('#title').val() === '' || $('#Description').val() === '' || $('#due-time').val() === '') {
         if ($('#title').val() === '') {
@@ -209,6 +208,7 @@ const progress = (selector) =>
             displayTask = {}
         })
 
+// update and display the tasks in specific order
 const updateEdits = (task) => {
     let id = `#t${ task.taskId }`
     $(`${ id }:nth-of-type(1)`).html(`<p>${ task.title }</p>`)
@@ -216,6 +216,7 @@ const updateEdits = (task) => {
     $(`${ id }:nth-of-type(3)`).html(`<p>${ task.point }</p>`)
     $(`${ id }:nth-of-type(5)`).html(`<p>${ task.dueTime.time }</p>`)
 }
+
 // display class that mark the todo that check
 const updateProgress = (task) => {
     let divId = `#div${ task.taskId }`
@@ -264,6 +265,7 @@ const edit = (selector) =>
         $('#due-time').val(displayTask.dueTime.value);
     })
 
+
 // Display ToDo
 displayTodos = (arr) => {
     $('.list-container .element').remove()
@@ -299,7 +301,8 @@ displayTodos = (arr) => {
     deleteTask('.fa-trash-can')
     progress('input[type=checkbox]')
 }
-//
+
+// fill inside localStorage
 const getLocalStorageItems = () => {
     let localItems = [];
     let i = 1;
@@ -309,6 +312,7 @@ const getLocalStorageItems = () => {
     }
     return localItems;
 }
+
 const fillLocalStorage = (arr) => {
     let index = 1;
     for (todo of arr) {
