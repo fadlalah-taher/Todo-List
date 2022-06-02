@@ -3,7 +3,7 @@ var editTaskId = 0;
 var displayTask = {};
 var todos = [];
 var results;
-let renderTodos;
+let displayTodos;
 
 //todos = getLocalStorageItems();
 
@@ -128,7 +128,7 @@ $('#points').click((element) => {
         sortByPoint(todosB);
     else
         sortByPoint(todosB, 's');
-    renderTodos(todosB);
+    displayTodos(todosB);
 })
 
 // search 
@@ -139,14 +139,14 @@ $('#search').on('keyup', (element) => {
             results.includes(todo) ? '' : results.push(todo);
         }
     }
-    renderTodos(results);
+    displayTodos(results);
 })
 
 // onclick clear list
 $('#clear').click(() => {
     localStorage.clear();
     todos = [];
-    renderTodos(todos);
+    displayTodos(todos);
 })
 
 
@@ -233,7 +233,7 @@ const deleteTask = (selector) =>
                 });
             }
         }
-        renderTodos(todos);
+        displayTodos(todos);
         localStorage.clear();
         fillLocalStorage(todos);
         displayTask = {};
@@ -264,8 +264,8 @@ const edit = (selector) =>
         $('#due-time').val(displayTask.dueTime.value);
     })
 
-// render
-renderTodos = (arr) => {
+// Display ToDo
+displayTodos = (arr) => {
     $('.list-container .element').remove()
     for (todo of arr) {
         $(`<div class="element ${ todo.completed ? 'done' : '' }" id="div${ todo.taskId }">
@@ -313,4 +313,4 @@ const fillLocalStorage = (arr) => {
 edit('.fa-pen-to-square')
 progress('input[type=checkbox]')
 deleteTask('.fa-trash-can')
-renderTodos(todos)
+displayTodos(todos)
