@@ -166,6 +166,9 @@ form .form-content input:focus,select:focus,textarea:focus{
     .form {
         transform: scale(0.9);
     }
+    #id_appear{
+        display: none;
+    }
 }
 @media (max-width:550px) {
     .nav{
@@ -176,5 +179,9 @@ form .form-content input:focus,select:focus,textarea:focus{
     }
     .form {
         transform: scale(0.7);
+    } 
+    #created_appear{
+        display: none;
     }
+    
 }
