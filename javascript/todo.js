@@ -4,8 +4,6 @@ var displayTask = {};
 var todos = [];
 var results;
 let displayTodos;
-//todos = localStorage.getItem("");
-
 
 
 // hide the form 
@@ -319,7 +317,9 @@ const fillLocalStorage = (arr) => {
         index++;
     }
 }
+
 todos = getLocalStorageItems(); 
+
 edit('.fa-pen-to-square');
 progress('input[type=checkbox]');
 deleteTask('.fa-trash-can');
