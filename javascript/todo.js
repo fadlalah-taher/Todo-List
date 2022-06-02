@@ -143,7 +143,7 @@ $('#search').on('keyup', (element) => {
     displayTodos(results);
 })
 
-// onclick clear list
+// onclick clear ToDo list
 $('#clear').click(() => {
     localStorage.clear();
     todotask = [];
@@ -167,6 +167,7 @@ const invalidInput = () => {
     }
 }
 
+//  random ID
 const todoId = () => {
     let rand;
     let ids = [];
@@ -297,9 +298,9 @@ displayTodos = (arr) => {
     </div>`)
             .appendTo(".list-container")
     }
-    edit('.fa-pen-to-square')
-    deleteTask('.fa-trash-can')
-    progress('input[type=checkbox]')
+    edit('.fa-pen-to-square');
+    deleteTask('.fa-trash-can');
+    progress('input[type=checkbox]');
 }
 
 // fill inside localStorage
