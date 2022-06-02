@@ -1,7 +1,7 @@
 // variable
 var editTaskId = 0;
 var displayTask = {};
-var todos = [];
+var todotask = [];
 var results;
 let displayTodos;
 
@@ -35,9 +35,9 @@ $('#add').click((element) =>{
         displayTask.point = $('#Point').val();
         displayTask.dueTime.value = $('#due-time').val();
         displayTask.dueTime.time = `${ curTime($('#due-time').val()) }`
-        for (let i = 0; i < todos.length; i++) {
-            if (todos[i].taskId === displayTask.taskId) {
-                todos[i] = displayTask
+        for (let i = 0; i < todotask.length; i++) {
+            if (todotask[i].taskId === displayTask.taskId) {
+                todotask[i] = displayTask
             }
         }
         $('.form-appear').toggle();
@@ -49,7 +49,7 @@ $('#add').click((element) =>{
     else{
         id = todoId()
         $('.form-appear').toggle();
-        todos.push({
+        todotask.push({
             completed: false,
             taskId: id,
             title: `${ $('#title').val() }`,
@@ -100,7 +100,7 @@ $('#add').click((element) =>{
     $('#Point').val('1');
     $('#due-time').val('');
     localStorage.clear();
-    fillLocalStorage(todos);
+    fillLocalStorage(todotask);
 });
 
 const sortByPoint = (arr, order = 'asc') => {
@@ -134,7 +134,7 @@ $('#points').click((element) => {
 // search 
 $('#search').on('keyup', (element) => {
     results = [];
-    for (let todo of todos) {
+    for (let todo of todotask) {
         if (todo.title.toLowerCase().includes(element.target.value.toLowerCase()) || todo.description.toLowerCase().includes(element.target.value.toLowerCase())) {
             results.includes(todo) ? '' : results.push(todo);
         }
@@ -145,8 +145,8 @@ $('#search').on('keyup', (element) => {
 // onclick clear list
 $('#clear').click(() => {
     localStorage.clear();
-    todos = [];
-    displayTodos(todos);
+    todotask = [];
+    displayTodos(todotask);
 })
 
 
@@ -171,7 +171,7 @@ const invalidInput = () => {
 const todoId = () => {
     let rand;
     let ids = [];
-    for (let todo of todos)
+    for (let todo of todotask)
         ids.push(todo.taskId)
         ids.length === 500 && alert('Full List');
         ids.length === 500 && retrun;
@@ -185,7 +185,7 @@ const todoId = () => {
 const progress = (selector) =>
     $(selector).change(
         function (element) {
-            for (let todo of todos) {
+            for (let todo of todotask) {
                 let checkboxId = `Completed${ todo.taskId }`
                 if (checkboxId === element.target.id) {
                     displayTask = todo
@@ -198,14 +198,14 @@ const progress = (selector) =>
             else {
                 displayTask.completed = false
             }
-            for (let i = 0; i < todos.length; i++) {
-                if (todos[i].taskId === displayTask.taskId) {
-                    todos[i] = displayTask
+            for (let i = 0; i < todotask.length; i++) {
+                if (todotask[i].taskId === displayTask.taskId) {
+                    todotask[i] = displayTask
                 }
             }
             updateProgress(displayTask)
             localStorage.clear()
-            fillLocalStorage(todos)
+            fillLocalStorage(todotask)
             displayTask = {}
         })
 
@@ -225,17 +225,17 @@ const updateProgress = (task) => {
 // delete task 
 const deleteTask = (selector) =>
     $(selector).click((element) => {
-        for (let i = 0; i < todos.length; i++) {
-            let TrashId = `trash${ todos[i].taskId }`
+        for (let i = 0; i < todotask.length; i++) {
+            let TrashId = `trash${ todotask[i].taskId }`
             if (TrashId === element.target.id) {
-                todos = todos.filter(task => {
-                    return task !== todos[i];
+                todotask = todotask.filter(task => {
+                    return task !== todotask[i];
                 });
             }
         }
-        displayTodos(todos);
+        displayTodos(todotask);
         localStorage.clear();
-        fillLocalStorage(todos);
+        fillLocalStorage(todotask);
         displayTask = {};
     })
 
@@ -249,7 +249,7 @@ const curTime = (x = null) => {
 // edit function
 const edit = (selector) =>
     $(selector).click((element) => {
-        for (let todo of todos) {
+        for (let todo of todotask) {
             let penId = `pen${ todo.taskId }`
             if (penId === element.target.id) {
                 displayTask = todo
@@ -319,9 +319,9 @@ const fillLocalStorage = (arr) => {
     }
 }
 
-todos = getLocalStorageItems(); 
+todotask = getLocalStorageItems(); 
 
 edit('.fa-pen-to-square');
 progress('input[type=checkbox]');
 deleteTask('.fa-trash-can');
-displayTodos(todos);
+displayTodos(todotask);
